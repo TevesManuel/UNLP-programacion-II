@@ -166,7 +166,7 @@ begin
             cantProductos := cantProductos + 1;
             cantProductosAnio := cantProductosAnio + 1;
         end;
-        WriteLn('Total productos anio ', anioActual, ': ', cantProductosAnio);
+        WriteLn(#9, 'Total productos anio ', anioActual, ': ', cantProductosAnio);
     end;
 end;
 
@@ -203,9 +203,34 @@ begin
     writeln('-------------------------------------------------------------------------------------------------------');
 end;
 
+{Implementaciones para el inciso b ->}
+procedure calcularMarca(lm: ListaMarcas; nombreMarca: string; anioMin: integer; anioMax: integer; precioMin: real);
+var
+    contador: integer;
+    productoActual: listaProductos;
+begin
+    contador := 0;
+    while(lm <> Nil) and (lm^.dato.nombre <> nombreMarca) do begin
+        lm := lm^.sig;
+    end;
+    if (lm <> Nil) then begin // Encontro la marca
+        productoActual := lm^.dato.productos;
+        while (productoActual <> Nil) do begin
+            writeln('A', (productoActual^.dato.anio >= anioMin));
+            writeln('B', (productoActual^.dato.anio <= anioMax));
+            writeln('C', (productoActual^.dato.precio >= precioMin));
+            if (productoActual^.dato.anio >= anioMin) and (productoActual^.dato.anio <= anioMax) and (productoActual^.dato.precio >= precioMin) then begin
+                contador := contador + 1;
+            end;
+            productoActual := productoActual^.sig;
+        end;
+        writeln('La marca ', nombreMarca, ' tiene ', contador, ' productos fabricados e/ ', anioMin, ' y ', anioMax, ' cuyos precios superan los ', precioMin:2:2);
+    end;
+end;
+{<- Implementaciones para el inciso b}
+
 procedure esperarParaSalir();
 begin
-    decorador();
     Write('Presionar enter para salir.');
     readln;
 end;
@@ -216,12 +241,15 @@ var
 begin
     Randomize;
     l:= Nil;
+    lm := Nil;
     crearLista(l);
     writeln ('Lista generada: ');
     imprimirListaV(l);
-    decorador();
-    lm := Nil;
     convertirLista(l, lm);
+    decorador();
+    calcularMarca(lm, 'Abercom', 2020, 2023, 100000.0);
+    decorador();
     imprimirListaMarcas(lm);
+    decorador();
     esperarParaSalir();
 end.
