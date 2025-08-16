@@ -15,6 +15,70 @@ Type
         dato: producto;
         sig: listaProductos;
     end;
+{Implementaciones para el inciso (a) ->}
+Type
+    Marca = record
+        nombre: string;
+        productos: listaProductos;
+    end;
+    ListaMarcas = ^NodoMarca;
+    NodoMarca = record
+        dato: Marca;
+        sig: ListaMarcas;
+    end;
+
+
+Procedure agregarFinalMarca(var l: ListaMarcas; m: marca);
+var
+    nue: ListaMarcas;
+    ant: ListaMarcas;
+    act: ListaMarcas;
+begin
+    new(nue);
+    nue^.dato := m;
+    nue^.sig := Nil;
+    
+    act := l;
+    ant := Nil;
+    while act <> Nil do begin
+        ant := act;
+        act := act^.sig;
+    end;
+
+    if ant = Nil then begin
+        l := nue;
+    end
+    else begin
+        ant^.sig := nue;
+    end;
+end;
+
+Procedure agregarFinal(var l: listaProductos; p: producto);
+var
+    nue: listaProductos;
+    ant: listaProductos;
+    act: listaProductos;
+begin
+    new(nue);
+    nue^.dato := p;
+    nue^.sig := Nil;
+    
+    act := l;
+    ant := Nil;
+    while act <> Nil do begin
+        ant := act;
+        act := act^.sig;
+    end;
+
+    if ant = Nil then begin
+        l := nue;
+    end
+    else begin
+        ant^.sig := nue;
+    end;
+end;
+{<- Implementaciones para el inciso (a)}
+
 
 Procedure agregarAdelante(var l: listaProductos; p: producto);
 var
@@ -65,28 +129,56 @@ end;
 {imprimir - Muestra en pantalla el producto}
 procedure imprimir(p: producto);
 begin
-     with (p) do begin
-          writeln('Producto', nombre, ' con codigo ',codigo, ': ', marca, ' Anio:', anio, ' Precio: ', precio:2:2);
-     end;
+    with (p) do begin
+        writeln(#9, 'Producto', nombre, ' con codigo ',codigo, ': ', marca, ' Anio:', anio, ' Precio: ', precio:2:2);
+    end;
 end;
 
 {imprimirLista - Muestra en pantalla la lista l}
 procedure imprimirLista(l: listaProductos);
 begin
-     while (l <> nil) do begin
-          imprimir(l^.dato);
-          l:= l^.sig;
-     end;
+    while (l <> nil) do begin
+        imprimir(l^.dato);
+        l := l^.sig;
+    end;
+end;
+
+procedure imprimirListaMarcas(l: ListaMarcas);
+begin
+    while (l <> Nil) do begin
+        WriteLn('Marca: ', l^.dato.nombre);
+        imprimirLista(l^.dato.productos);
+        l := l^.sig;
+    end;
+end;
+
+procedure convertirLista(l: listaProductos; var lm: ListaMarcas);
+var
+    nuevaMarca: Marca;
+begin
+    while l <> Nil do begin
+        nuevaMarca.nombre := l^.dato.marca;
+        nuevaMarca.productos := Nil;
+        while (l <> Nil) and (l^.dato.marca = nuevaMarca.nombre) do begin
+            agregarFinal(nuevaMarca.productos, l^.dato);
+            l := l^.sig;
+        end;
+        agregarFinalMarca(lm, nuevaMarca);
+    end;
 end;
 
 var
-   l: listaProductos;
+    l: listaProductos;
+    lm: ListaMarcas;
 begin
-     Randomize;
-
-     l:= nil;
-     crearLista(l);
-     writeln ('Lista generada: ');
-     imprimirLista(l);
-     readln;
+    Randomize;
+    l:= Nil;
+    crearLista(l);
+    writeln ('Lista generada: ');
+    imprimirLista(l);
+    writeln('-------------------------------------------------------------------------------------------------------');
+    lm := Nil;
+    convertirLista(l, lm);
+    imprimirListaMarcas(lm);
+    readln;
 end.
