@@ -126,28 +126,59 @@ begin
     end;
 end;
 
-{imprimir - Muestra en pantalla el producto}
-procedure imprimir(p: producto);
+procedure imprimirV(p: producto);
 begin
     with (p) do begin
         writeln(#9, 'Producto', nombre, ' con codigo ',codigo, ': ', marca, ' Anio:', anio, ' Precio: ', precio:2:2);
     end;
 end;
 
+{imprimir - Muestra en pantalla el producto}
+procedure imprimir(p: producto);
+begin
+    with (p) do begin
+        writeln(#9, #9, codigo, ' ', nombre, ' ', precio:2:2);
+    end;
+end;
+
 {imprimirLista - Muestra en pantalla la lista l}
-procedure imprimirLista(l: listaProductos);
+procedure imprimirListaV(l: listaProductos);
 begin
     while (l <> nil) do begin
-        imprimir(l^.dato);
+        imprimirV(l^.dato);
         l := l^.sig;
     end;
 end;
 
+{imprimirLista - Muestra en pantalla la lista l}
+procedure imprimirLista(l: listaProductos; var cantProductos: integer);
+var
+    anioActual: integer;
+    cantProductosAnio: integer;
+begin
+    while (l <> nil) do begin
+        anioActual := l^.dato.anio;
+        cantProductosAnio := 0;
+        writeln(#9, 'Anio: ', anioActual);
+        while (l <> nil) and (l^.dato.anio = anioActual) do begin
+            imprimir(l^.dato);
+            l := l^.sig;
+            cantProductos := cantProductos + 1;
+            cantProductosAnio := cantProductosAnio + 1;
+        end;
+        WriteLn('Total productos anio ', anioActual, ': ', cantProductosAnio);
+    end;
+end;
+
 procedure imprimirListaMarcas(l: ListaMarcas);
+var
+    cantProductos: integer;
 begin
     while (l <> Nil) do begin
+        cantProductos := 0;
         WriteLn('Marca: ', l^.dato.nombre);
-        imprimirLista(l^.dato.productos);
+        imprimirLista(l^.dato.productos, cantProductos);
+        WriteLn('Total productos ', l^.dato.nombre, ': ', cantProductos);
         l := l^.sig;
     end;
 end;
@@ -167,6 +198,18 @@ begin
     end;
 end;
 
+procedure decorador();
+begin
+    writeln('-------------------------------------------------------------------------------------------------------');
+end;
+
+procedure esperarParaSalir();
+begin
+    decorador();
+    Write('Presionar enter para salir.');
+    readln;
+end;
+
 var
     l: listaProductos;
     lm: ListaMarcas;
@@ -175,10 +218,10 @@ begin
     l:= Nil;
     crearLista(l);
     writeln ('Lista generada: ');
-    imprimirLista(l);
-    writeln('-------------------------------------------------------------------------------------------------------');
+    imprimirListaV(l);
+    decorador();
     lm := Nil;
     convertirLista(l, lm);
     imprimirListaMarcas(lm);
-    readln;
+    esperarParaSalir();
 end.
