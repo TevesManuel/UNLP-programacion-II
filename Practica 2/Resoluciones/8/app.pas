@@ -48,16 +48,48 @@ begin
     writeln;
 End;
 
+procedure buscarInterno(vec: vector; valor: integer; min: integer; max: integer);
+var
+    i: integer;
+begin
+    i := min + (( max - min ) div 2);
+
+    // writeln('min: ', min, ' max: ', max);
+    // writeln('i: ', i, ' vec[i]: ', vec[i]);
+
+    if ( vec[i] = valor ) then begin
+        writeln('[i] Valor encontrado en ', i);
+    end
+    else begin
+        if ( ( max - min ) <> 0 ) then begin
+            if ( valor < vec[i] ) then
+                buscarInterno(vec, valor, min, i)
+            else
+                buscarInterno(vec, valor, i + 1, max);
+        end
+        else begin
+            writeln('[!] El valor no existe en el vector');
+        end;
+    end;
+end;
+
+procedure buscar(vec: vector; valor: integer);
+begin
+    buscarInterno(vec, valor, 0, dimF);
+end;
+
 {PROGRAMA PRINCIPAL}
 var
     v: vector;
     dimL : dim;
-
+    input: integer;
 begin
     cargarVectorOrdenado(v,dimL);
 
     writeln('Nros almacenados: ');
     imprimirVector(v, dimL);
-
+    write('Ingresar un valor:');
+    readln(input);
+    buscar(v, input);
     readln;
 end.
