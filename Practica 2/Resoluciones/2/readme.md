@@ -1,0 +1,1 @@
+El error es que no hay un caso base por lo tanto nunca llega, nunca resulve, y viola la memoria.
