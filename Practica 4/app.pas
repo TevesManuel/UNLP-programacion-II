@@ -2,14 +2,14 @@ program app;
 const
     FIN= 'ZZZ';
 type
-    alumno= record
+    alumno = record
         dni: longint;
         nombre: string;
         apellido: string;
     end;
 
     {Estructura para el árbol}
-    arbol= ^nodoArbol;
+    arbol = ^nodoArbol;
     nodoArbol= record
         dato: alumno;
         hi, hd: arbol;
