@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=triangulo
+comment1.params=
+comment1.target=triangulo()
+comment10.params=
+comment10.target=double\ calcularArea()
+comment11.params=
+comment11.target=double\ calcularPerimetro()
+comment2.params=a\ b\ c
+comment2.target=triangulo(double,\ double,\ double)
+comment3.params=
+comment3.target=double\ getLadoA()
+comment4.params=
+comment4.target=double\ getLadoB()
+comment5.params=
+comment5.target=double\ getLadoC()
+comment6.params=LadoA
+comment6.target=void\ setLadoA(double)
+comment7.params=LadoB
+comment7.target=void\ setLadoB(double)
+comment8.params=LadoC
+comment8.target=void\ setLadoC(double)
+comment9.params=
+comment9.target=boolean\ EsTriangulo()
+numComments=12
