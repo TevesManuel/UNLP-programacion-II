@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=SurtidorGas
+comment1.params=
+comment1.target=SurtidorGas()
+comment2.params=dni\ nombre\ apellido\ numero\ importe\ cliente\ clienteMax
+comment2.target=SurtidorGas(int,\ java.lang.String,\ java.lang.String,\ int,\ int,\ int,\ int)
+comment3.params=
+comment3.target=int\ getClientes()
+comment4.params=
+comment4.target=int\ getClientesMax()
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment6.params=
+comment6.target=int\ calcularImpuesto()
+numComments=7

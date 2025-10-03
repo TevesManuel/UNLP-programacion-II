@@ -1,25 +1,25 @@
 public class Clase1
 {
     private int VariableA;
-    private int VariableB;
-    private int VariableC;
+    private String VariableB;
+    private String VariableC;
     
     public Clase1(){};
-    public Clase1(int VariableA, int VariableB, int VariableC){
+    public Clase1(int VariableA, String VariableB, String VariableC){
         this.VariableA = VariableA;
         this.VariableB = VariableB;
-        this.VariableC = VariableC;
+        this.VariableC = VariableC; 
     }
     
     public int getVariableA()
     {
         return VariableA;
     }   
-    public int getVariableB()
+    public String getVariableB()
     {
         return VariableB;
     }
-    public int getVariableC()
+    public String getVariableC()
     {
         return VariableC;
     }
@@ -27,16 +27,17 @@ public class Clase1
     {
         this.VariableA = VariableA;
     }
-    public void setVariableB(int VariableB)
+    public void setVariableB(String VariableB)
     {
         this.VariableB = VariableB;
     }
-    public void setVariableC(int VariableC)
+    public void setVariableC(String VariableC)
     {
-        this.VariableC = VariableC;
+        this.VariableC = VariableC; 
     }
+    
     public String toString()
     {
-		return (" VariableA " + VariableA + " VariableB " + VariableB + " VariableC " + VariableC);
+		return "VariableB: " + VariableB + " " + VariableC + "; VariableA: " + VariableA;
     }
 }

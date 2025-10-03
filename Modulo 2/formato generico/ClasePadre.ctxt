@@ -1,9 +1,9 @@
 #BlueJ class context
-comment0.target=Clase1
+comment0.target=ClasePadre
 comment1.params=
-comment1.target=Clase1()
+comment1.target=ClasePadre()
 comment2.params=VariableA\ VariableB\ VariableC
-comment2.target=Clase1(int,\ int,\ int)
+comment2.target=ClasePadre(int,\ int,\ int)
 comment3.params=
 comment3.target=int\ getVariableA()
 comment4.params=
