@@ -32,7 +32,7 @@ public class app
         }
         return total;
     }
-    public static void find(int [][] m, int n) {
+    private static void find(int [][] m, int n) {
         boolean finded = false;
         for(int i = 0; i < DIMF; i++) {
             for(int j = 0; j < DIMC; j++) {
@@ -50,6 +50,13 @@ public class app
             System.out.println("No se encontro el elemento.");
         }
     }
+    private static int sumF(int [][] m, int f) {
+        int total = 0;
+        for(int j = 0; j < DIMC; j++) {
+            total += m[f][j];
+        }
+        return total;
+    }
     public static void main(String args[]) {
         //Declaro la matriz y reservo su memoria
         int [][] m = new int[DIMF][DIMC];
@@ -63,6 +70,15 @@ public class app
         printMatrix(m);
         
         System.out.println("Sum punto 6)2): " + sumFC(m, 2, 9, 0, 3));
+        
+        int [] v = new int[10];
+        for(int i = 0; i < 10; i++) {
+            v[i] = sumF(m, i);
+        }
+        for(int i = 0; i < 10; i++) {
+            System.out.println("v[" + i + "]: " + v[i]);
+        }
+        
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         in.close();
