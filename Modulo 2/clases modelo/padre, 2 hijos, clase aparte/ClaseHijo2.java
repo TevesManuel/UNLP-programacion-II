@@ -8,13 +8,13 @@ public class ClaseHijo2 extends ClasePadre
         this.VariableF = VariableF; 
     }
     
-    public int getVariableH()
+    public int getVariableF()
     {
         return VariableF;
     }
     
     public String toString()
     {
-        return super.toString() + " tiene " + VariableF + " VariableF";
+        return super.toString() + "; VariableF" + VariableF;
     }
 }
