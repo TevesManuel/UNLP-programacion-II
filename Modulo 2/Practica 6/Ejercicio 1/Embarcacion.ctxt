@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Embarcacion
+comment1.params=a\u00F1o\ importe\ cit\ nombre\ apellido\ r\ t\ e\ p\ v
+comment1.target=Embarcacion(int,\ double,\ int,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ int)
+comment10.params=p
+comment10.target=void\ setpeso(int)
+comment11.params=v
+comment11.target=void\ setValor(int)
+comment12.params=
+comment12.target=double\ calcularImporte()
+comment2.params=
+comment2.target=java.lang.String\ getREY()
+comment3.params=
+comment3.target=java.lang.String\ getTipo()
+comment4.params=
+comment4.target=int\ getEslora()
+comment5.params=
+comment5.target=int\ getPeso()
+comment6.params=
+comment6.target=int\ getValor()
+comment7.params=r
+comment7.target=void\ setREY(java.lang.String)
+comment8.params=t
+comment8.target=void\ setTipo(java.lang.String)
+comment9.params=e
+comment9.target=void\ setEslora(int)
+numComments=13

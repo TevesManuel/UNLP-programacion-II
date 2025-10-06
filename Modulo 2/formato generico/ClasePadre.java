@@ -1,11 +1,11 @@
-public class Clase1
+public abstract class ClasePadre
 {
     private int VariableA;
     private int VariableB;
     private int VariableC;
     
-    public Clase1(){};
-    public Clase1(int VariableA, int VariableB, int VariableC){
+    public ClasePadre(){};
+    public ClasePadre(int VariableA, int VariableB, int VariableC){
         this.VariableA = VariableA;
         this.VariableB = VariableB;
         this.VariableC = VariableC;

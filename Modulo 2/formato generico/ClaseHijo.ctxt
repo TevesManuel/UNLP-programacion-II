@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=ClaseHijo
+comment1.params=
+comment1.target=ClaseHijo()
+comment2.params=VariableA\ VariableB\ VariableC\ VariableD\ VariableE\ VariableF
+comment2.target=ClaseHijo(int,\ int,\ int,\ int,\ int,\ int)
+comment3.params=
+comment3.target=int\ getVariableD()
+comment4.params=
+comment4.target=int\ getVariableE()
+comment5.params=
+comment5.target=int\ getVariableF()
+comment6.params=VariableD
+comment6.target=void\ setVariableD(int)
+comment7.params=VariableE
+comment7.target=void\ setVariableE(int)
+comment8.params=VariableF
+comment8.target=void\ setVariableF(int)
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

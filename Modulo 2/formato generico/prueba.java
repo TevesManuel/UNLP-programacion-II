@@ -5,32 +5,32 @@ public class prueba
     {
         // Variables y clases//
         Scanner in = new Scanner(System.in);
-        int Va;
-        int Vb;
-        int Vc;
+        int VariableA;
+        int VariableB;
+        int VariableC;
 
         //Constructor 1(mariano recomienda no usar)//
         Clase1 NameClase1 = new Clase1();
 
         System.out.print("Ingrese el valor A: ");
-        Va = in.nextInt();
-        NameClase1.setMetodoA(Va);
+        VariableA = in.nextInt();
+        NameClase1.setVariableA(VariableA);
         System.out.print("Ingrese el valor B: ");
-        Vb = in.nextInt();
-        NameClase1.setMetodoB(Vb);
+        VariableB = in.nextInt();
+        NameClase1.setVariableB(VariableB);
         System.out.print("Ingrese el valor C: ");
-        Vc = in.nextInt();
-        NameClase1.setMetodoC(Vc);
+        VariableC = in.nextInt();
+        NameClase1.setVariableC(VariableC);
         
         //Constructor 2(mariano recomienda usar este)//
         
         System.out.print("Ingrese el valor A: ");
-        Va = in.nextInt();
+        VariableA = in.nextInt();
         System.out.print("Ingrese el valor B: ");
-        Vb = in.nextInt();
+        VariableB = in.nextInt();
         System.out.print("Ingrese el valor C: ");
-        Vc = in.nextInt();
+        VariableC = in.nextInt();
         
-        Clase1 Name2clase1 = new Clase1(Va, Vb, Vc);
+        Clase1 Name2clase1 = new Clase1(VariableA, VariableB, VariableC);
     }
 }
