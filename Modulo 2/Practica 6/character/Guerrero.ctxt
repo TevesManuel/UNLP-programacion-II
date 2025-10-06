@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Guerrero
+comment1.params=
+comment1.target=Guerrero()
+comment2.params=vidaMax\ nivel\ nombre\ veneno\ fuerza
+comment2.target=Guerrero(int,\ int,\ java.lang.String,\ boolean,\ int)
+comment3.params=
+comment3.target=int\ getFuerza()
+comment4.params=
+comment4.target=void\ ataqueEspecial()
+numComments=5
