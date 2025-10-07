@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Balance
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Balance\ here.\r\n\r\n\ @author\ (Manuel\ Tomas\ Teves)\r\n\ \r\n
+comment1.params=
+comment1.target=void\ iniciarCompra()
+comment2.params=pesoEnKg\ precioPorKg
+comment2.target=void\ registrarProducto(double,\ double)
+comment3.params=
+comment3.target=double\ devolverMontoAPagar()
+comment4.params=
+comment4.target=java.lang.String\ devolverResumenDeCompra()
+comment5.params=
+comment5.target=Balance()
+numComments=6
