@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Entrenador
+comment1.params=
+comment1.target=Entrenador()
+comment2.params=nombre\ sueldo\ cantidadCG
+comment2.target=Entrenador(java.lang.String,\ double,\ int)
+comment3.params=
+comment3.target=java.lang.String\ getNombre()
+comment4.params=
+comment4.target=double\ getSueldo()
+comment5.params=
+comment5.target=int\ getCantidadCG()
+comment6.params=nombre
+comment6.target=void\ setNombre(java.lang.String)
+comment7.params=sueldo
+comment7.target=void\ setSueldo(double)
+comment8.params=cantidadCG
+comment8.target=void\ setCantidadCG(int)
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

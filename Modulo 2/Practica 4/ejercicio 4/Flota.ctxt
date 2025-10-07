@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Flota
+comment0.text=\r\n\r\n\ @author\ (Manuel\ Tomas\ Teves)\r\n\ \r\n
+comment1.params=
+comment1.target=Flota()
+comment2.params=
+comment2.target=boolean\ estaLlena()
+comment3.params=m
+comment3.target=void\ agregarMicro(Micro)
+comment4.params=patente
+comment4.target=boolean\ eliminarMicro(java.lang.String)
+comment5.params=patente
+comment5.target=Micro\ buscarPatente(java.lang.String)
+comment6.params=destino
+comment6.target=Micro\ buscarDestino(java.lang.String)
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8

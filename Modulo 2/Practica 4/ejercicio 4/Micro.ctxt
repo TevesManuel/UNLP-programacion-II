@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Micro
+comment0.text=\r\n\r\n\ @author\ (Manuel\ Tomas\ Teves)\r\n\ \r\n
+comment1.params=patente\ destino\ horaSalida\ asientos
+comment1.target=Micro(java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
+comment2.params=patente\ destino\ horaSalida
+comment2.target=Micro(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment3.params=patente\ destino
+comment3.target=Micro(java.lang.String,\ java.lang.String)
+comment4.params=
+comment4.target=Micro()
+comment5.params=p
+comment5.target=void\ setPatente(java.lang.String)
+comment6.params=
+comment6.target=java.lang.String\ getPatente()
+comment7.params=d
+comment7.target=void\ setDestino(java.lang.String)
+comment8.params=
+comment8.target=java.lang.String\ getDestino()
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10
