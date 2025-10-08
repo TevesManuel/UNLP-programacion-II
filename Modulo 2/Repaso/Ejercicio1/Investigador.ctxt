@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Investigador
+comment1.params=
+comment1.target=Investigador()
+comment10.params=especialidad
+comment10.target=void\ setEspecialidad(java.lang.String)
+comment11.params=subsidio\ i
+comment11.target=void\ agregarSubsidio(Subsidio,\ int)
+comment12.params=
+comment12.target=java.lang.String\ toString()
+comment2.params=nombre\ categoria\ especialidad
+comment2.target=Investigador(java.lang.String,\ int,\ java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getNombre()
+comment4.params=
+comment4.target=int\ getCategoria()
+comment5.params=
+comment5.target=java.lang.String\ getEspecialidad()
+comment6.params=i
+comment6.target=Subsidio\ getSubsidio(int)
+comment7.params=
+comment7.target=int\ getCantSubsidios()
+comment8.params=nombre
+comment8.target=void\ setNombre(java.lang.String)
+comment9.params=categoria
+comment9.target=void\ setCategoria(int)
+numComments=13
