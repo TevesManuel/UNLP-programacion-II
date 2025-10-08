@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Libro
+comment0.text=\r\n\r\n\ @author\ (Manuel\ Tomas\ Teves)\r\n\ \r\n
+comment1.params=codigo\ cantPags\ resumen\ anioPublicacion\ responsable\ titulo\ cantidadCapitulos\ esEdicionBolsillo
+comment1.target=Libro(int,\ int,\ java.lang.String,\ int,\ Responsable,\ java.lang.String,\ int,\ boolean)
+comment2.params=codigo\ cantPags\ resumen\ responsable\ titulo\ cantidadCapitulos\ esEdicionBolsillo
+comment2.target=Libro(int,\ int,\ java.lang.String,\ Responsable,\ java.lang.String,\ int,\ boolean)
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=
+comment4.target=void\ publicar()
+numComments=5
