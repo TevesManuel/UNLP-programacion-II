@@ -38,6 +38,6 @@ public class ClaseHijo extends ClasePadre
     }
     public String toString()
     {
-		return super.toString() + " VariableD " + VariableD + " VariableE " + VariableE + " VariableF " + VariableF;
+        return super.toString() + "; VariableD: " + VariableD + "; VariableE: " + VariableE + "; VariableF: " + VariableF;
     }
 }

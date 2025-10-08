@@ -37,6 +37,6 @@ public abstract class ClasePadre
     }
     public String toString()
     {
-		return (" VariableA " + VariableA + " VariableB " + VariableB + " VariableC " + VariableC);
+        return (" VariableA: " + VariableA + "; VariableB: " + VariableB + "; VariableC: " + VariableC);
     }
 }

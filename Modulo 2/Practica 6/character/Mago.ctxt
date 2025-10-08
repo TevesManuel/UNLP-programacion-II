@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Mago
+comment1.params=
+comment1.target=Mago()
+comment2.params=vidaMax\ nivel\ nombre\ veneno\ poderMAgico
+comment2.target=Mago(int,\ int,\ java.lang.String,\ boolean,\ int)
+comment3.params=
+comment3.target=int\ getPoderMAgico()
+comment4.params=
+comment4.target=void\ ataqueEspecial()
+numComments=5

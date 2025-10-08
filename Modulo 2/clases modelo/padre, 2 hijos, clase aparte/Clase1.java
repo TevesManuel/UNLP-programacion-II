@@ -38,6 +38,6 @@ public class Clase1
     
     public String toString()
     {
-		return "VariableB: " + VariableB + " " + VariableC + "; VariableA: " + VariableA;
+        return "; VariableB: " + VariableB + "; VariableC: " + VariableC + "; VariableA: " + VariableA;
     }
 }
