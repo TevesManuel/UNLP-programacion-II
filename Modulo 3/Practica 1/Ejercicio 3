@@ -1,0 +1,40 @@
+programa ejemplo
+procesos
+  proceso recorrerCalle(E ca: numero,ES tot:numero)
+  comenzar
+    Pos(1, ca)
+    repetir 99
+      mientras HayFlorEnLaEsquina
+        tomarflor
+        tot := tot + 1
+        mover
+    mientras HayFlorEnLaEsquina
+      tomarflor
+      tot := tot + 1
+  fin
+
+  proceso recorrerCiudad(ES tot: numero)
+  variables
+    ca:numero
+  comenzar
+    ca := PosCa
+    derecha
+    repetir 100
+      recorrerCalle(ca, tot)
+      ca := ca + 1
+         
+  fin
+  
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    recorrerCiudad(1)
+  fin
+variables
+  R_info: robot1
+comenzar
+  AsignarArea(R_info, ciudad)
+  Iniciar(R_info, 1,1)
+fin

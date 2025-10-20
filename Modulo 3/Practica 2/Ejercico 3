@@ -1,0 +1,75 @@
+programa ejemplo
+procesos  
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+  proceso trabajarEsquina(ES tot:numero)
+  variables
+    papeles:numero
+    flores:numero
+  comenzar
+    papeles := 0
+    flores := 0
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      flores := flores + 1
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      papeles := papeles + 1
+    si (papeles = (flores + 1))
+      tot := (tot + 1)
+    mientras HayPapelEnLaBolsa
+      depositarPapel
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+    flores := 0
+    papeles := 0
+  fin
+  
+  proceso patron(E per:numero; ES tot:numero)
+  comenzar
+    repetir per
+      trabajarEsquina(tot)
+      mover
+    derecha
+    repetir per
+      trabajarEsquina(tot)
+      mover
+    izquierda
+  fin
+  
+  proceso hacerFiguras(ES tot:numero)
+  variables 
+    per:numero
+  comenzar
+    per := 1
+    repetir 4
+      patron(per, tot)
+      per := per + 1
+  fin
+  
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot bot
+  variables
+    tot:numero
+  comenzar
+    tot := 0
+    hacerFiguras(tot)
+  fin
+  
+variables
+  bot1: bot
+  bot2: bot
+  bot3: bot
+comenzar
+  AsignarArea(bot1, ciudad)
+  AsignarArea(bot2, ciudad)
+  AsignarArea(bot3, ciudad)
+  Iniciar(bot1, 14,12)
+  Iniciar(bot2, 10,17)
+  Iniciar(bot3, 6,22)
+fin

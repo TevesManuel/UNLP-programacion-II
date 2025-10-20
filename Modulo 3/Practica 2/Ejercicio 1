@@ -1,0 +1,54 @@
+programa ejemplo
+procesos
+  proceso contadores(ES esqVacias: numero; ES flores: numero)
+  comenzar
+    si ~(HayFlorEnLaEsquina)
+      esqVacias := esqVacias + 1
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      flores := flores + 1
+  fin
+  
+  proceso recorrerAvenida(E numAv: numero)
+  variables
+    esqVacias:numero
+    flores: numero
+  comenzar
+    Pos(numAv, 1)
+    repetir 99
+      contadores(esqVacias,flores)
+      mover
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+    Informar(flores)
+    Informar(esqVacias)
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    recorrerAvenida(1)
+  fin
+  
+  robot robot2
+  comenzar
+    recorrerAvenida(3)
+  fin
+  
+  robot robot3
+  comenzar
+    recorrerAvenida(5)
+  fin
+variables
+  bot1: robot1
+  bot2: robot2
+  bot3: robot3
+comenzar
+  AsignarArea(bot1, ciudad)
+  AsignarArea(bot2, ciudad)
+  AsignarArea(bot3, ciudad)
+  Iniciar(bot1, 1,1)
+  Iniciar(bot2, 3,1)
+  Iniciar(bot3, 5,1)
+fin
