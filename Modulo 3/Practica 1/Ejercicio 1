@@ -1,0 +1,24 @@
+programa ejemplo
+procesos
+  proceso dibujarCuadrado(E L: numero)
+  comenzar
+    derecha
+    repetir 4
+      repetir L
+        mover
+      repetir 3
+        derecha
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    dibujarCuadrado(5)
+  fin
+variables
+  R_info: robot1
+comenzar
+  AsignarArea(R_info, ciudad)
+  Iniciar(R_info, 1,1)
+fin
