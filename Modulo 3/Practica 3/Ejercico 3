@@ -1,0 +1,120 @@
+programa ejemplo 
+procesos 
+  proceso papeles(ES pa:numero) 
+  variables 
+    p:numero 
+  comenzar 
+    p:=0 
+    mientras HayPapelEnLaEsquina 
+      tomarPapel 
+      p:=p+1 
+    repetir p
+      depositarPapel
+    pa:=p 
+  fin 
+  
+  proceso flores(ES flo:numero) 
+  variables 
+    f:numero 
+  comenzar 
+    f:=0 
+    mientras HayFlorEnLaEsquina 
+      tomarFlor 
+      f:=f+1 
+    repetir f
+      depositarFlor
+    flo:=f 
+  fin 
+  
+  proceso escalon(ES cumple: boolean) 
+  variables 
+    f:numero 
+    p:numero 
+    auxF: numero 
+    auxP: numero 
+    alto: numero 
+  comenzar 
+    f := 0
+    p := 0 
+    Random(alto, 1, 5) 
+    repetir alto 
+      flores(auxF) 
+      papeles(auxP) 
+      f := f + auxF 
+      p := p + auxP 
+      mover 
+    derecha 
+    flores(auxF) 
+    papeles(auxP) 
+    f := f + auxF 
+    p := p + auxP 
+    mover 
+    flores(auxF) 
+    papeles(auxP) 
+    f := f + auxF 
+    p := p + auxP 
+    si (f > p) 
+      cumple := V 
+  fin 
+  
+  proceso escalera(ES cant: numero) 
+  variables 
+    esc:numero 
+    cumple:boolean 
+  comenzar 
+    esc:=0 
+    cumple:=F 
+    repetir 4
+      escalon(cumple) 
+      si (cumple=V) 
+        esc:=esc+1 
+      repetir 3 
+        derecha 
+    cant:=esc 
+  fin 
+  
+areas
+  a1: AreaP (2,1,6,20) 
+  a2: AreaP (7,1,11,20) 
+  a3: AreaP (12,1,16,20) 
+  a4: AreaP (1,1,1,1) 
+    
+robots 
+  robot robot1 
+  variables 
+    cant:numero 
+  comenzar 
+    cant:=0 
+    escalera(cant)  
+    EnviarMensaje(cant,admin) 
+  fin
+ 
+  robot Tadmin 
+  variables 
+    cant:numero 
+    suma:numero 
+  comenzar 
+    RecibirMensaje(cant,bot1) 
+    suma:=cant + suma
+    RecibirMensaje(cant,bot2) 
+    suma:=cant + suma
+    RecibirMensaje(cant,bot3) 
+    suma:=cant + suma
+    Informar(suma) 
+  fin 
+  
+variables 
+  bot1: robot1 
+  bot2: robot1 
+  bot3: robot1 
+  admin: Tadmin 
+comenzar 
+  AsignarArea(bot1,a1) 
+  AsignarArea(bot2,a2) 
+  AsignarArea(bot3,a3) 
+  AsignarArea(admin,a4) 
+  Iniciar(bot1, 2,1) 
+  Iniciar(bot2, 7,1) 
+  Iniciar(bot3,12,1) 
+  Iniciar(admin,1,1)
+fin

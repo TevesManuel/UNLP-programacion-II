@@ -1,0 +1,90 @@
+programa ejemplo
+procesos
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+  
+  proceso giro(E angulo:numero)
+  comenzar
+    repetir angulo
+      derecha
+  fin
+  
+  proceso limpiarPapeles(E pasos: numero)
+  comenzar
+    repetir (pasos - 1)
+      mientras HayPapelEnLaEsquina
+        tomarPapel
+      mover
+    mientras HayPapelEnLaBolsa
+      depositarPapel
+  fin
+  
+  proceso limpiarFlores(E pasos: numero)
+  comenzar
+    repetir (pasos - 1)
+      mientras HayFlorEnLaEsquina
+        tomarFlor
+      mover
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+  fin
+  
+  proceso patron(E pasos: numero; E av:numero; E ca: numero; E flores:boolean)
+  comenzar
+    si flores
+      limpiarFlores(pasos)
+      Pos(av,ca)
+      limpiarFlores(pasos)
+    sino 
+      limpiarPapeles(pasos)
+      Pos(av,ca)
+      limpiarPapeles(pasos)
+  fin
+    
+areas
+  area1: AreaP (1, 75, 15, 80)
+  area2: AreaP (75, 80, 80, 100)
+  area3: AreaP (70, 10, 100, 15)
+  area4: AreaP (10, 1, 15, 10)
+  
+robots
+  robot robot1
+  comenzar
+    derecha
+    patron(15,1,80,V)
+  fin
+  
+  robot robot2
+  comenzar
+    patron(20,80,80,F)
+  fin
+  
+  robot robot3
+  comenzar
+    derecha
+    patron(30,70,15,V)
+  fin
+  
+  robot robot4
+  comenzar
+    patron(10,15,1,F)
+  fin
+
+variables
+  bot1: robot1
+  bot2: robot2
+  bot3: robot3
+  bot4: robot4
+comenzar
+  AsignarArea(bot1, area1)
+  AsignarArea(bot2, area2)
+  AsignarArea(bot3, area3)
+  AsignarArea(bot4, area4)
+  Iniciar(bot1,1,75)
+  Iniciar(bot2,75,80)
+  Iniciar(bot3,70,10)  
+  Iniciar(bot4,10,1)
+fin
