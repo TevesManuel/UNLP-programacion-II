@@ -1,0 +1,139 @@
+programa ejemplo
+procesos
+  proceso INICIO
+  comenzar
+    repetir 400
+      tomarFlor
+  fin
+  proceso reversa
+  comenzar
+    repetir 2 
+      derecha
+    mover
+    repetir 2
+      derecha
+  fin
+  proceso limpiarEsquina
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+  fin
+areas
+  HQ: AreaP (100,100,100,100)
+  area1: AreaPC(1,1,1,100)
+  area2: AreaPC(2,1,2,100)
+  area3: AreaPC(3,1,3,100)
+robots
+  robot cliente
+  variables
+    cantFlores:numero
+    ID: numero
+    ACK:boolean
+    av:numero
+    ca:numero
+  comenzar
+    RecibirMensaje(ID, server)
+    mientras(PosCa < 100)
+      Random(cantFlores,1,4)
+      EnviarMensaje(ID, server)
+      RecibirMensaje(ACK,server)
+      EnviarMensaje(cantFlores, server)
+      av:=PosAv
+      EnviarMensaje(av,server)
+      ca:= PosCa
+      EnviarMensaje(ca + 1,server)
+      RecibirMensaje(ACK, server)
+      mover
+      limpiarEsquina
+      reversa
+      mientras ((HayFlorEnLaBolsa) & (PosCa < 100)) 
+        depositarFlor
+        mover
+      si (PosCa = 100)
+        EnviarMensaje(0,server)
+  fin
+  
+  robot servidor
+  variables
+    ID:numero
+    flores:numero
+    terminados:numero
+    av:numero
+    ca:numero
+    ACK:boolean
+  comenzar
+    INICIO
+    terminados:= 0 
+    EnviarMensaje(1,bot1)
+    EnviarMensaje(2,bot2)
+    EnviarMensaje(3,bot3)
+    mientras terminados < 3
+      RecibirMensaje(ID,*)
+      Informar(terminados)
+      si ID = 1
+        EnviarMensaje(V,bot1)
+        RecibirMensaje(flores,bot1)
+        si (flores <> 0)
+          RecibirMensaje(av,bot1)
+          RecibirMensaje(ca,bot1)
+          Pos(av,ca)
+          repetir flores
+            depositarFlor
+          Pos(100,100)
+          ACK:=V
+          EnviarMensaje(ACK,bot1)
+        sino 
+          terminados := terminados + 1
+      
+      
+      si ID = 2
+        EnviarMensaje(V,bot2)
+        RecibirMensaje(flores,bot2)
+        si (flores <> 0)
+          RecibirMensaje(av,bot2)
+          RecibirMensaje(ca,bot2)
+          Pos(av,ca)
+          repetir flores
+            depositarFlor
+          Pos(100,100)
+          EnviarMensaje(V,bot2)
+        sino 
+          terminados := terminados + 1
+      
+
+      si ID = 3
+        EnviarMensaje(V,bot3)
+        RecibirMensaje(flores,bot3)
+        si (flores <> 0)
+          RecibirMensaje(av,bot3)
+          RecibirMensaje(ca,bot3)
+          Pos(av,ca)
+          repetir flores
+            depositarFlor
+          Pos(100,100)
+          EnviarMensaje(V,bot3)
+        sino 
+          terminados := terminados + 1
+      si (ID = 0)
+        terminados := terminados + 1
+  fin
+ 
+variables
+  bot1: cliente
+  bot2: cliente
+  bot3: cliente
+  server: servidor
+comenzar
+  AsignarArea(bot1, area1)
+  AsignarArea(bot2, area2)
+  AsignarArea(bot3, area3)
+  AsignarArea(server, HQ)
+  AsignarArea(server, area1)
+  AsignarArea(server, area2)
+  AsignarArea(server, area3)
+  Iniciar(bot1, 1,1)
+  Iniciar(bot2, 2,1)
+  Iniciar(bot3, 3,1)
+  Iniciar(server, 100,100)
+  
+fin

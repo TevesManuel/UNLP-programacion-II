@@ -1,0 +1,91 @@
+programa ejemplo
+procesos
+  proceso mandarATodos(E dato:numero)
+  comenzar
+    EnviarMensaje(dato,bot1)
+    EnviarMensaje(dato,bot2)
+    EnviarMensaje(dato,bot3)
+    EnviarMensaje(dato,bot4)
+  fin
+  proceso limpiarEsquina(E av: numero; E ca: numero;ES sum:numero)
+  comenzar
+    Pos(av, ca)
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      sum := sum + 1
+  fin
+areas
+  ciudad: AreaC (2,2,10,10)
+  HQ: AreaP(1,1,1,1)
+  spawn: AreaC(2,1,5,1)
+robots
+  robot esclavo
+  variables
+    sum:numero
+    av:numero
+    ca:numero
+    repes:numero
+    avO:numero
+    caO:numero
+  comenzar
+    RecibirMensaje(repes,admin)
+    sum:=0
+    avO:=PosAv
+    caO:=PosCa
+    repetir repes
+      RecibirMensaje(av, admin)
+      RecibirMensaje(ca, admin)
+      BloquearEsquina(av,ca)
+      Pos(av,ca)
+      limpiarEsquina(ca,av,sum)
+      Pos(avO,caO)
+      LiberarEsquina(ca,av)
+    EnviarMensaje(sum,admin)
+  fin
+  robot amo
+  variables
+    repes:numero
+    ca:numero
+    av:numero
+    sum:numero
+  comenzar
+    Random(repes,1,5)
+    mandarATodos(repes)
+    repetir repes
+      Random(ca,2,10)
+      Random(av,2,10)
+      BloquearEsquina(av,ca)
+      mandarATodos(av)
+      mandarATodos(ca)
+      LiberarEsquina(av,ca)
+    RecibirMensaje(sum,bot1)
+    Informar(sum)
+    RecibirMensaje(sum,bot2)
+    Informar(sum)
+    RecibirMensaje(sum,bot3)
+    Informar(sum)
+    RecibirMensaje(sum,bot4)
+    Informar(sum)
+  fin
+variables
+  bot1: esclavo
+  bot2: esclavo
+  bot3: esclavo
+  bot4: esclavo
+  admin:amo
+comenzar
+  AsignarArea(bot1, ciudad)
+  AsignarArea(bot1, spawn)
+  AsignarArea(bot2, ciudad)
+  AsignarArea(bot2, spawn)
+  AsignarArea(bot3, ciudad)  
+  AsignarArea(bot3, spawn)
+  AsignarArea(bot4, ciudad)
+  AsignarArea(bot4, spawn)
+  AsignarArea(admin, HQ)
+  Iniciar(bot1,2,1)
+  Iniciar(bot2,3,1)
+  Iniciar(bot3,4,1)
+  Iniciar(bot4,5,1)
+  Iniciar(admin,1,1)
+fin

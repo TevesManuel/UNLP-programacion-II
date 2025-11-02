@@ -1,0 +1,121 @@
+programa ejemplo
+procesos
+  proceso limpiarEsquina(ES flores:numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      flores := flores + 1 
+  fin
+  
+  proceso depositarFlores(ES flores:numero)  
+  comenzar
+    repetir flores
+      depositarFlores
+    flores := 0
+  fin
+  
+  proceso lado(E cant:numero;ES flores:numero)
+  comenzar
+    repetir (cant - 1)
+      limpiarEsquina(flores)
+      mover
+    limpiarEsquina(flores)
+    derecha
+  fin
+  proceso perimetro(E av: numero;E ca: numero;E alto: numero;E ancho: numero;ES flores:numero)
+  comenzar
+    Pos(av,ca)
+    repetir 2
+      lado(alto, flores)
+      lado(ancho,flores)
+  fin
+areas
+  area1: AreaP (15,15,30,35)
+  area2: AreaP (40,40,55,60)
+  deposito: AreaPC(10,10,10,10)
+  spawn1: AreaP(2,2,2,2)
+  spawn2: AreaP(6,6,6,6)
+  HQ: AreaP(1,1,1,1)
+robots
+  robot robot1
+  variables
+    av:numero
+    ca:numero
+    alto:numero
+    ancho:numero
+    avO:numero
+    caO:numero
+    flores:numero
+  comenzar
+    flores:= 0
+    avO:=PosAv
+    caO:=PosCa 
+    RecibirMensaje(av,admin)
+    RecibirMensaje(ca,admin)
+    RecibirMensaje(alto,admin)
+    RecibirMensaje(ancho,admin)
+    perimetro(av,ca,alto,ancho,flores)
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    EnviarMensaje(flores,admin)
+    depositarFlores(flores)
+    Pos(avO,caO)
+    LiberarEsquina(10,10)
+  fin
+  
+  robot admin
+  variables
+    av:numero
+    ca:numero
+    alto:numero
+    ancho:numero
+    flores:numero
+  comenzar
+    Random(av,15,30)
+    Random(ca,15,35)
+    Random(ancho,0,15)
+    Random(alto,0,20)
+    si (av +ancho) > 30
+      ancho := 30 - av
+    si (alto + ca) > 35
+      alto := 35 - ca
+    EnviarMensaje(av,bot1)
+    EnviarMensaje(ca,bot1)
+    EnviarMensaje(alto,bot1)
+    EnviarMensaje(ancho,bot1)
+    Random(av,40,55)
+    Random(ca,40,60)
+    Random(alto,0,20)
+    Random(ancho,0,15)
+    EnviarMensaje(av,bot2)
+    EnviarMensaje(ca,bot2)
+    si (ancho + av) > 40
+      ancho := 40 - av
+    si (alto + ca) > 60
+      alto := 60 - ca
+    EnviarMensaje(alto,bot2)
+    EnviarMensaje(ancho,bot2)
+    RecibirMensaje(flores, bot1)
+    Informar(flores)
+    RecibirMensaje(flores, bot2)
+    Informar(flores)
+  fin
+  
+variables
+  bot1: robot1
+  bot2: robot1
+  admin: admin
+comenzar
+
+  AsignarArea(bot1, area1)
+  AsignarArea(bot1, deposito)
+  AsignarArea(bot1, spawn1)
+  AsignarArea(bot2, spawn2)
+  AsignarArea(bot2, deposito)
+  AsignarArea(bot2, area2)
+  AsignarArea(admin, HQ)
+ 
+  Iniciar(bot1, 2,2)
+  Iniciar(bot2, 6,6)
+  Iniciar(admin, 1,1)
+fin

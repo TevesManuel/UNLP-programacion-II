@@ -1,0 +1,113 @@
+programa ejemplo
+procesos
+  proceso recorrerLadoFlor(E lado:numero; ES tot: numero)  
+  comenzar 
+    si (lado = 1)
+      repetir 99
+        BloquearEsquina(PosAv,PosCa + 1)
+        mover
+        mientras HayFlorEnLaEsquina
+          tomarFlor
+          tot:= tot + 1
+        LiberarEsquina(PosAv,PosCa-1)
+    si (lado = 2)
+      repetir 99
+        BloquearEsquina(PosAv+1,PosCa)
+        mover
+        mientras HayFlorEnLaEsquina
+          tomarFlor
+          tot:= tot + 1
+        LiberarEsquina(PosAv-1,PosCa)
+    si (lado = 3)
+      repetir 99
+        BloquearEsquina(PosAv,PosCa - 1)
+        mover
+        mientras HayFlorEnLaEsquina
+          tomarFlor
+          tot:= tot + 1
+        LiberarEsquina(PosAv,PosCa + 1)
+    si (lado = 4)
+      repetir 99
+        BloquearEsquina(PosAv-1,PosCa)
+        mover
+        mientras HayFlorEnLaEsquina
+          tomarFlor
+          tot:= tot + 1
+        LiberarEsquina(PosAv+ 1,PosCa)
+    derecha
+  fin
+  proceso recorrerLadoPapel(E lado:numero; ES tot: numero)  
+  comenzar 
+    si (lado = 1)
+      repetir 99
+        BloquearEsquina(PosAv,PosCa + 1)
+        mover
+        mientras HayPapelEnLaEsquina
+          tomarPapel
+          tot:= tot + 1
+        LiberarEsquina(PosAv,PosCa -1)
+    si (lado = 2)
+      repetir 99
+        BloquearEsquina(PosAv+1,PosCa)
+        mover
+        mientras HayPapelEnLaEsquina
+          tomarPapel
+          tot:= tot + 1
+        LiberarEsquina(PosAv-1,PosCa)
+    si (lado = 3)
+      repetir 99
+        BloquearEsquina(PosAv,PosCa - 1)
+        mover
+        mientras HayPapelEnLaEsquina
+          tomarPapel
+          tot:= tot + 1
+        LiberarEsquina(PosAv,PosCa + 1)
+    si (lado = 4)
+      repetir 99
+        BloquearEsquina(PosAv-1,PosCa)
+        mover
+        mientras HayPapelEnLaEsquina
+          tomarPapel
+          tot:= tot + 1
+        LiberarEsquina(PosAv + 1,PosCa)
+    derecha
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+  
+robots
+  robot florero
+  variables
+    cant:numero
+  comenzar
+    Pos(100,100)
+    derecha
+    derecha
+    cant := 0
+    recorrerLadoFlor(3, cant)
+    recorrerLadoFlor(4, cant)
+    recorrerLadoFlor(1, cant)
+    recorrerLadoFlor(2, cant)
+    Informar(cant)
+  fin
+  robot papelero
+  variables
+    cant:numero
+  comenzar
+    Pos(1,1)
+    cant := 0
+    recorrerLadoPapel(1, cant)
+    recorrerLadoPapel(2, cant)
+    recorrerLadoPapel(3, cant)
+    recorrerLadoPapel(4, cant)
+    Informar(cant)
+  fin
+variables
+  papelero: papelero
+  florero:florero
+comenzar
+  AsignarArea(papelero, ciudad)
+  AsignarArea(florero,ciudad)
+  Iniciar(papelero, 50,49)
+  Iniciar(florero, 49,50)
+fin
