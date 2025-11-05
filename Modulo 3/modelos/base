@@ -1,0 +1,40 @@
+programa Grupo11
+procesos
+  proceso recorrerAvenida(E numAv: numero)
+  comenzar
+    Pos(numAv, 1)
+    repetir 99
+      mover
+  fin
+
+areas
+  ciudad: AreaC (10,10,100,100)
+  area1: AreaP(2,2,2,2)
+  area2: AreaP(3,3,3,3)
+  area3: AreaP(4,4,4,4)
+  HQ: AreaP(1,1,1,1)
+
+robots
+  robot robot1
+  comenzar
+    recorrerAvenida(1)
+  fin
+  robot admin
+  comenzar
+    recorreAvenida(1)
+  fin
+variables
+  bot1: robot1
+  bot2: robot1
+  bot3: robot1
+  admin:admin
+comenzar
+  AsignarArea(bot1, area1)
+  AsignarArea(bot2, area2)
+  AsignarArea(bot3, area3)
+  AsignarArea(admin, HQ)
+  Iniciar(bot1, 2,2)
+  Iniciar(bot2, 3,3)
+  Iniciar(bot3, 4,4)
+  Iniciar(admin, 1,1)
+fin
