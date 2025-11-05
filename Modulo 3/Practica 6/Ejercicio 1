@@ -35,7 +35,8 @@ procesos
     LiberarEsquina(PosAv,ca)
     limpiarEsquinaFlores(flores)
   fin
-  
+ 
+
   proceso recorrerCalle(ES papeles:numero)
   variables
     av:numero
