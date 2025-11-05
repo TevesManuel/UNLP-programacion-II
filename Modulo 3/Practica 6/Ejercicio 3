@@ -1,0 +1,102 @@
+programa ejemplo
+procesos
+  proceso etapa(ES flores: numero)
+  variables
+    esquinas:numero
+  comenzar
+    esquinas := 0
+    mientras (((esquinas < 15) & (flores < 10)) & (PosAv < 100))
+      si HayFlorEnLaEsquina
+        tomarFlor
+        flores := flores + 1
+      mover
+      esquinas := esquinas + 1
+    si PosAv = 100
+      si HayFlorEnLaEsquina
+        tomarFlor
+        flores := flores + 1
+  fin
+  
+  proceso depositar(E flores:numero)
+  variables
+    repes:numero
+    caO,avO:numero
+  comenzar
+    repes:=flores
+    caO:=PosCa
+    avO:=PosAv
+    repetir repes
+      BloquearEsquina(10,10)
+      Pos(10,10)
+      depositarFlor
+      Pos(avO,caO)
+      LiberarEsquina(10,10)
+  fin
+  
+  proceso recorrerCalle
+  variables
+    flores:numero
+  comenzar
+    flores := 0
+    mientras (PosAv < 100)
+      etapa(flores)
+      depositar(flores)
+      EnviarMensaje(V,admin)
+      EnviarMensaje(flores,admin)
+      flores := 0
+  fin
+  
+areas
+  area1: AreaP (1,3,100,3)
+  area2: AreaP (1,4,100,4)
+  HQ: AreaP (1,5,1,5)
+  deposito: AreaC(10,10,10,10)
+robots
+  robot robot1
+  comenzar
+    derecha
+    recorrerCalle
+    EnviarMensaje(F,admin)
+    EnviarMensaje(0,admin)
+  fin
+  
+  robot cosechador
+  variables
+    flores:numero
+    seguir:boolean
+    ACK1,ACK2:boolean
+    repes:numero
+    flores1,flores2:numero
+  comenzar
+    seguir := V
+    mientras seguir = V
+      RecibirMensaje(ACK1,bot1)
+      RecibirMensaje(ACK2,bot2)
+      RecibirMensaje(flores1,bot1)
+      RecibirMensaje(flores2,bot2)
+      seguir := (ACK1 || ACK2)
+      BloquearEsquina(10,10)
+      Pos(10,10)
+      repes :=flores1+flores2
+      repetir repes
+        tomarFlor
+        flores := flores + 1
+      Pos(1,5)
+      LiberarEsquina(10,10)
+    Informar(flores)
+  fin
+variables
+  bot1 : robot1
+  bot2 : robot1
+  admin: cosechador
+comenzar
+  AsignarArea(bot1, area1)
+  AsignarArea(bot1, deposito)
+  AsignarArea(bot2, area2)
+  AsignarArea(bot2, deposito)
+  AsignarArea(admin, HQ)
+  AsignarArea(admin, deposito)
+  Iniciar(bot1, 1,3)
+  Iniciar(bot2, 1,4)
+  Iniciar(admin, 1,5)
+fin

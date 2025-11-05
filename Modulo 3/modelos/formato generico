@@ -1,0 +1,89 @@
+programa ejemplo
+procesos
+  
+  proceso limpiarEsquinaFlores(ES total:numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      total:= total + 1
+  fin
+ 
+  proceso limpiarEsquinaPapeles(ES total:numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      total:= total + 1
+  fin
+  
+  proceso avanzarBloqueando(E repeticiones:numero)
+  variables
+    ca:numero
+    av:numero
+  comenzar
+    repetir repeticiones
+      av:= PosAv + 1 
+      ca:= PosCa
+      BloquearEsquina(av, PosCa)
+      mover
+      {lo que quieras q haga}
+      av:= av - 2
+      LiberarEsquina(av,ca)
+  fin
+ 
+  proceso asignarID
+  comenzar
+    EnviarMensaje(1,bot1)
+    EnviarMensaje(2,bot2)
+    EnviarMensaje(3,bot3)
+  fin
+    
+  proceso enviarATodos(E mensaje:numero)
+  comenzar
+    EnviarMensaje(mensaje,bot1)
+    EnviarMensaje(mensaje,bot2)
+    EnviarMensaje(mensaje,bot3)
+  fin
+  
+  proceso recibirDeTodos(ES mensaje1:numero; ES mensaje2:numero;ES mensaje3:numero)
+  comenzar
+    RecibirMensaje(mensaje1,bot1)
+    RecibirMensaje(mensaje1,bot1)
+    RecibirMensaje(mensaje1,bot1)
+  fin
+  
+  proceso recorrerAvenida(E numAv: numero)
+  comenzar
+    Pos(numAv, 1)
+    repetir 99
+      mover
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+  area1: AreaP(2,2,2,2)
+  area2: AreaP(3,3,3,3)
+  area3: AreaP(4,4,4,4)
+  HQ: AreaP(1,1,1,1)
+robots
+  robot robot1
+  comenzar
+    recorrerAvenida(1)
+  fin
+  robot admin
+  comenzar
+    recorreAvenida(1)
+  fin
+variables
+  bot1: robot1
+  bot2: robot1
+  bot3: robot1
+  admin:admin
+comenzar
+  AsignarArea(bot1, area1)
+  AsignarArea(bot2, area2)
+  AsignarArea(bot3, area3)
+  AsignarArea(admin, HQ)
+  Iniciar(bot1, 2,2)
+  Iniciar(bot2, 3,3)
+  Iniciar(bot3, 4,4)
+  Iniciar(admin, 1,1)
+fin

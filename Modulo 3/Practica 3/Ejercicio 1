@@ -1,0 +1,49 @@
+programa ejemplo
+procesos
+  proceso recorrerAvenida(ES flores:numero)
+  comenzar
+    repetir 9
+      mientras HayFlorEnLaEsquina
+        tomarFlor
+        flores := flores + 1
+      mover
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      flores := flores + 1
+  fin
+areas
+  area1: AreaP(1,1,1,10)
+  area2: AreaP(2,11,2,20)
+robots
+  robot robot1
+  variables
+    flores2:numero
+    flores:numero
+  comenzar
+    recorrerAvenida(flores)
+    EnviarMensaje(flores,bot2)
+    RecibirMensaje(flores2,bot2)
+    si flores>flores2
+      Informar(flores-flores2)
+  fin
+      
+  robot robot2
+  variables
+    flores1:numero
+    flores:numero
+  comenzar
+    recorrerAvenida(flores)
+    EnviarMensaje(flores,bot1)
+    RecibirMensaje(flores1,bot1)
+    si flores>flores1
+      Informar(flores-flores1)
+  fin
+variables
+  bot1: robot1
+  bot2: robot2
+comenzar
+  AsignarArea(bot1,area1)
+  AsignarArea(bot2,area2)
+  Iniciar(bot1,1,1)
+  Iniciar(bot2,2,11)
+fin

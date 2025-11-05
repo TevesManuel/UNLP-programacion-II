@@ -1,0 +1,131 @@
+programa ejemplo
+procesos
+  proceso recibirFlores(ES floresTot:numero)
+  variables
+    flores:numero
+  comenzar
+    RecibirMensaje(flores,bot1)
+    floresTot:=floresTot + flores
+    RecibirMensaje(flores,bot2)
+    floresTot:=floresTot + flores
+    RecibirMensaje(flores,bot3)
+    floresTot:=floresTot + flores
+  fin
+  
+  proceso depositar(E flores:numero)
+  variables
+    repes:numero
+    av,ca:numero
+  comenzar
+    repes:=flores
+    av:=PosAv
+    ca:=PosCa
+    repetir repes
+      BloquearEsquina(10,10)
+      Pos(10,10)
+      depositarFlor
+      Pos(av,ca)
+      LiberarEsquina(10,10)
+  fin
+  
+  proceso limpiarEsquina(ES flores:numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      flores := flores + 1
+  fin
+  
+  proceso enviarData(E ID:numero;E ca:numero;E av:numero)
+  comenzar
+    si ID = 1
+      EnviarMensaje(ca,bot1)
+      EnviarMensaje(av,bot1)
+      EnviarMensaje(100,bot2)
+      EnviarMensaje(100,bot3)
+    sino  
+      si ID = 2
+        EnviarMensaje(ca,bot2)
+        EnviarMensaje(av,bot2)
+        EnviarMensaje(100,bot1)
+        EnviarMensaje(100,bot3)
+          
+      sino
+        si ID = 3
+          EnviarMensaje(ca,bot3)
+          EnviarMensaje(av,bot3)
+          EnviarMensaje(100,bot1)
+          EnviarMensaje(100,bot2)
+  fin
+  
+  proceso accionar(ES flores:numero)
+  variables
+    ca,av:numero
+    caO,avO:numero
+  comenzar
+    caO := PosCa
+    avO := PosAv
+    RecibirMensaje(ca,admin)
+    si (ca <> 100)
+      RecibirMensaje(av,admin)
+      BloquearEsquina(av,ca)
+      Pos(av,ca)
+      limpiarEsquina(flores)
+      Pos(avO,caO)
+      LiberarEsquina(av,ca)
+  fin
+areas
+  ciudad: AreaPC (40,40,60,60)
+  deposito:AreaC(10,10,10,10)
+  HQ:AreaP(4,1,4,1)
+  spawn1:AreaP(1,1,1,1)
+  spawn2:AreaP(2,1,2,1)
+  spawn3:AreaP(3,1,3,1)
+robots
+  robot robot1
+  variables
+    flores:numero
+  comenzar
+    repetir 8
+      accionar(flores)
+    depositar(flores)
+    EnviarMensaje(flores,admin)
+    flores:=0
+  fin
+  robot fiscalizador
+  variables
+    ca:numero
+    av:numero
+    ID:numero
+    floresTot:numero
+  comenzar
+    repetir 8
+      Random(ID,1,3)
+      Random(ca,40,60)
+      Random(av,40,60)
+      enviarData(ID,ca,av)
+    recibirFlores(floresTot)
+    Informar(floresTot)
+  fin
+variables
+  bot1: robot1
+  bot2: robot1
+  bot3: robot1
+  admin:fiscalizador
+comenzar
+  AsignarArea(bot1, spawn1)
+  AsignarArea(bot1,ciudad)
+  AsignarArea(bot1,deposito)
+  AsignarArea(bot2, spawn2)
+  AsignarArea(bot2,ciudad)
+  AsignarArea(bot2,deposito)
+  AsignarArea(bot3, spawn3)
+  AsignarArea(bot3,ciudad)
+  AsignarArea(bot3, deposito)
+  AsignarArea(admin, HQ)
+  AsignarArea(admin, deposito)
+  
+  Iniciar(bot1, 1,1)
+  Iniciar(bot2, 2,1)
+  Iniciar(bot3, 3,1)
+  Iniciar(admin, 4,1)
+fin

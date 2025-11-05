@@ -1,0 +1,126 @@
+programa ejemplo
+procesos
+  proceso limpiarEsquinaFlores(ES flores:numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      flores := flores + 1
+  fin
+  
+  proceso limpiarEsquinaPapeles(ES papeles:numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      papeles := papeles + 1
+  fin
+  
+  proceso recorrerAvenida(ES flores:numero)
+  variables
+    ca:numero
+  comenzar
+    repetir 96
+      limpiarEsquinaFlores(flores)
+      mover
+      
+    repetir 2
+      ca:=PosCa + 1
+      BloquearEsquina(PosAv,ca)
+      limpiarEsquinaFlores(flores)
+      mover
+      ca:=PosCa-1
+      LiberarEsquina(PosAv,ca)
+    limpiarEsquinaFlores(flores)
+    mover
+    ca:=PosCa-1
+    LiberarEsquina(PosAv,ca)
+    limpiarEsquinaFlores(flores)
+  fin
+  
+  proceso recorrerCalle(ES papeles:numero)
+  variables
+    av:numero
+  comenzar
+    repetir 96
+      limpiarEsquinaPapeles(papeles)
+      mover
+    repetir 2
+      av:=PosAv - 1
+      BloquearEsquina(av,PosCa)
+      limpiarEsquinaPapeles(papeles)
+      mover
+      av:=PosAv+1
+      LiberarEsquina(av,PosCa)
+    limpiarEsquinaPapeles(papeles)
+    mover
+    av:=PosAv+1
+    LiberarEsquina(av,PosCa)
+    limpiarEsquinaPapeles(papeles)
+  fin
+  
+areas
+  areaR: AreaPC (2,1,3,100)
+  areaA: AreaPC (1,98,100,99)
+  HQ: AreaP(1,1,1,1)
+robots
+  robot equipoRojo
+  variables
+    flores:numero
+  comenzar
+    recorrerAvenida(flores)
+    EnviarMensaje(flores,admin)
+  fin
+  
+  robot equipoAzul
+  variables
+    papeles:numero
+  comenzar
+    repetir 3
+      derecha
+    recorrerCalle(papeles)
+    EnviarMensaje(papeles,admin)
+  fin
+  
+  robot fiscalizador
+  variables
+    papeles,flores:numero
+    sumaPapeles,sumaFlores:numero
+  comenzar
+    RecibirMensaje(flores,R1)
+    sumaFlores := sumaFlores + flores
+    RecibirMensaje(flores,R2)
+    sumaFlores := sumaFlores + flores
+    RecibirMensaje(papeles,A1)
+    sumaPapeles := papeles + papeles
+    RecibirMensaje(papeles,A2)
+    sumaPapeles := papeles + papeles
+    si sumaPapeles > sumaFlores
+      Informar("gana el equipo", 2) 
+    sino 
+      si sumaPapeles < sumaFlores
+        Informar("gana el equipo", 1) 
+      sino
+        Informar("empate", 1)
+  fin
+  
+variables
+  R1: equipoRojo
+  R2: equipoRojo
+  A1: equipoAzul
+  A2: equipoAzul
+  admin: fiscalizador
+comenzar
+  AsignarArea(R1, areaR)
+  AsignarArea(R1, areaA)
+  AsignarArea(R2, areaR)
+  AsignarArea(R2, areaA)
+  AsignarArea(A1, areaR)
+  AsignarArea(A1, areaA)
+  AsignarArea(A2, areaR)
+  AsignarArea(A2, areaA)
+  AsignarArea(admin, HQ)
+  Iniciar(R1, 2,1)
+  Iniciar(R2, 3,1)
+  Iniciar(A1, 100,98)
+  Iniciar(A2, 100,99)
+  Iniciar(admin, 1,1)
+fin
